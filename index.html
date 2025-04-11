@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta tags básicas -->
+    <meta name="description" content="Informações de contato e entre outras informações.">
+    <meta name="keywords" content="link in bio, Instagram, design, portfólio, contato, orçamento">
+    <meta name="author" content="@felipdesigner_">
+
+    <!-- Meta tags do Open Graph (Para WhatsApp, Facebook e Instagram) -->
+    <meta property="og:title" content="@felipdesigner_">
+    <meta property="og:description" content="Informações de contato e entre outras informações.">
+    <meta property="og:image" content="https://felipdesigner.github.io/IMGS/miniatura.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://felipdesigner.github.io/">
+    <meta property="og:type" content="website">
+
+    <title>FelipDesigner_</title>
+    <link rel="icon" href="IMGS/Favicons/favicon.png" type="image/x-icon" sizes="32x32">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estiliza a tela de carregamento */
+        #preloader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: black;
+            /* Cor do fundo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Mantém o preloader acima de tudo */
+        }
+
+        /* Animação do carregador (círculo girando) */
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+            /* Fundo preto atrás da imagem */
+            background: url('IMGS/background.png') no-repeat center center/cover;
+            background-attachment: fixed;
+            background-size: cover;
+            color: #ffffff;
+            line-height: 1.6;
+            text-align: center;
+            position: relative;
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
+            user-select: none;
+            /* Chrome, Opera, etc */
+            /* Garante que a altura mínima do corpo da página ocupe toda a altura da tela */
+            min-height: 100vh;
+            /* 100% da altura da janela de visualização */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Garante que o conteúdo preencha o espaço disponível */
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            /* Impede rolagem lateral */
+            min-height: 100vh;
+            /* Garante que o body cubra toda a tela */
+            background-color: black;
+            /* Mantém o fundo sempre preto */
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .profile-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid transparent;
+            /* Borda invisível por enquanto */
+            background-image: linear-gradient(45deg, #003fc8, #fd1d1d, #fcb045, #00bb4b);
+            background-size: 400% 400%;
+            /* Ajuste o tamanho para garantir um bom efeito */
+            animation: rotateGradient 3s linear infinite;
+            /* Animação do giro do degrade */
+            padding: 1px;
+            /* Espaçamento interno para que a borda fique visível */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            /* Sombra para destacar */
+            /* Impede que a imagem seja arrastada */
+            -webkit-user-drag: none;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Animação para girar o degrade */
+        @keyframes rotateGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .profile-description {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .content-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .content-item {
+            width: 90%;
+            max-width: 390px;
+            /* Mantém o limite máximo */
+            min-height: 170px;
+            /* Mantém uma altura mínima */
+            height: auto;
+            /* Ajusta a altura automaticamente */
+            aspect-ratio: 2.3 / 1;
+            /* Mantém a proporção do card */
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 3s infinite alternate, borderGlow 4s infinite alternate;
+            /* Adiciona a animação das bordas */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Animação do brilho nas bordas */
+        @keyframes borderGlow {
+            0% {
+                box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.7), 0 0 15px 10px rgba(131, 131, 131, 0.4), 0 0 10px rgba(72, 84, 113, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.6), 0 0 15px 10px rgba(113, 113, 113, 0.3), 0 0 10px rgba(80, 75, 116, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.8), 0 0 15px 10px rgba(116, 116, 116, 0.5), 0 0 10px rgba(75, 71, 113, 0.6);
+            }
+        }
+
+        .content-item img {
+            width: 100%;
+            /* Faz a imagem preencher a largura do card */
+            height: 100%;
+            /* Faz a imagem preencher a altura do card */
+            object-fit: contain;
+            /* Ajusta a imagem sem deixar espaços vazios */
+            border-radius: 10px;
+            /* Mantém a borda arredondada se houver */
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Remove qualquer borda ou sombra da imagem */
+        .content-item img {
+            pointer-events: none;
+            /* Impede interações com a imagem */
+            border-radius: 10px;
+            /* Mantém a borda arredondada original */
+        }
+
+        /* Torna os links clicáveis e faz eles preencherem toda a área do card, mas sem afetar a imagem */
+        .content-item a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            /* Isso faz o link preencher o card, mas não afeta a borda da imagem */
+            top: 0;
+            left: 0;
+            text-decoration: none;
+            /* Remove underline */
+            z-index: 2;
+            /* Garante que o link fique sobre a imagem */
+            border-radius: 10px;
+            /* Mantém a borda arredondada nos links também */
+        }
+
+        footer {
+            background-color: #00000000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+            /* Faz o rodapé ficar no fundo da página */
+            font-size: 14px;
+        }
+
+        footer a.clickable {
+            background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+            /* Cores do Instagram */
+            -webkit-background-clip: text;
+            /* Aplica o degrade no texto */
+            background-clip: text;
+            /* Suporta mais navegadores */
+            color: transparent;
+            /* Torna o texto transparente para exibir o degrade */
+            font-weight: bold;
+            text-decoration: none;
+            padding: 0 5px;
+            transition: background 0.3s ease;
+            /* Suaviza a transição no hover */
+        }
+
+        footer a.clickable:hover {
+            background: linear-gradient(45deg, #fd1d1d, #fcb045, #833ab4);
+            /* Inverte as cores no hover */
+            -webkit-background-clip: text;
+            /* Garante que o hover ainda tenha o efeito de degrade */
+            background-clip: text;
+            color: transparent;
+            /* Garante que o texto continue invisível, exibindo o degrade */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Tela de carregamento -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <div class="profile-box">
+        <img src="IMGS/Logos/LogoNOIRAGCY.png" alt="NOME" class="profile-img">
+        <h2 class="profile-name">Felipe | Design para Social Media</h2>
+        <p class="profile-description">Enquanto eles dormem, o design acontece!</p>
+    </div>
+
+    <section id="portfolio">
+        <h2>Meus links abaixo:</h2>
+        <div class="content-grid">
+            <div class="content-item">
+                <a href="https://wa.me/message/R5LLXPBTM53IL1" target="_blank">
+                    <img src="IMGS/Cardes/img_entra_em_contato1.png" class="card-img"
+                        data-alt-src="IMGS/Cardes/img_entra_em_contato2.png" alt="Entrar em contato">
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="https://www.behance.net/2579410e404" target="_blank">
+                    <img src="IMGS/Cardes/img_behance_portifólio1.png" class="card-img"
+                        data-alt-src="IMGS/Cardes/img_behance_portifólio2.png" alt="Portifólio">
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="https://www.instagram.com/felipdesigner_/" target="_blank">
+                    <img src="IMGS/Cardes/img_arquivo1.png" class="card-img" data-alt-src="IMGS/Cardes/img_arquivo2.png"
+                        alt="Em Andamento">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        Felipe Designer - 2025 | Desenvolvido por <a href="https://www.instagram.com/felipdesigner_/" target="_blank"
+            class="clickable"> @felipdesigner_ </a>
+    </footer>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Aguarda o carregamento completo de todos os elementos (incluindo imagens e background)
+            window.addEventListener("load", function () {
+                const preloader = document.getElementById("preloader");
+
+                // Adiciona uma transição suave
+                preloader.style.transition = "opacity 0.8s ease-out";
+                preloader.style.opacity = "0";
+
+                // Aguarda a transição terminar antes de remover o preloader
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 800); // Tempo para desaparecer suavemente
+            });
+        });
+
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        (function () {
+            var devtools = /./;
+            devtools.toString = function () {
+                this.opened = true;
+            };
+
+            // Verifica periodicamente o tamanho da janela
+            var checkDevTools = setInterval(function () {
+                if (devtools.opened || window.innerWidth < window.outerWidth - 100) {
+                    // Se a ferramenta de desenvolvedor for aberta, fecha o site
+                    window.location.href = 'about:blank'; // Fecha a página
+                }
+            }, 1000);
+
+            // Detecta se o desenvolvedor está aberto logo ao carregar a página
+            window.addEventListener('resize', function () {
+                if (window.innerWidth < window.outerWidth - 100) {
+                    clearInterval(checkDevTools);  // Para a verificação contínua
+                    window.location.href = 'about:blank'; // Fecha a página
+                }
+            });
+        })();
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const cards = document.querySelectorAll(".card-img");
+            let currentCard = 0;
+            let delay = 3000; // Delay between each image change
+            let changeInterval;
+
+            function changeImage(card) {
+                const currentSrc = card.src;
+                const altSrc = card.getAttribute("data-alt-src");
+
+                card.src = altSrc;
+                card.setAttribute("data-alt-src", currentSrc);
+            }
+
+            function startImageChange() {
+                changeInterval = setInterval(() => {
+                    changeImage(cards[currentCard]);
+
+                    // Move to the next card
+                    currentCard = (currentCard + 1) % cards.length;
+                }, delay);
+            }
+
+            // Start image change after a brief delay to allow the page to load
+            setTimeout(() => {
+                startImageChange();
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
