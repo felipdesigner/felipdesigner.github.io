@@ -70,7 +70,7 @@
             background-color: black;
             /* Fundo preto atrás da imagem */
             background: url('IMGS/background.png') no-repeat center center/cover;
-            background-attachment: fixed;
+            background-attachment: scroll; /* Corrigido: era fixed */
             background-size: cover;
             color: #ffffff;
             line-height: 1.6;
@@ -136,8 +136,6 @@
             /* Sombra para destacar */
             /* Impede que a imagem seja arrastada */
             -webkit-user-drag: none;
-            z-index: 1;
-            position: relative;
         }
 
         /* Animação para girar o degrade */
